@@ -17,14 +17,12 @@ import com.example.test.databinding.FragmentWebBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.concurrent.fixedRateTimer
 
-@AndroidEntryPoint
 class WebFragment : Fragment() {
     private lateinit var binding: FragmentWebBinding
-
+    private val link = "https://html5test.com/"
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentWebBinding.inflate(inflater, container, false)
@@ -33,12 +31,14 @@ class WebFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val webView = WebView(requireContext())
         webView.webViewClient = WebViewClient()
-        binding.flWeb.addView(webView)
-        webView.loadUrl("https://html5test.com/")
+        webView.loadUrl(link)
         webView.webViewClient = WebViewClient()
         webView.canGoBack()
+
+        binding.flWeb.addView(webView)
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -54,8 +54,7 @@ class WebFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() =
-            WebFragment()
+        fun newInstance() = WebFragment()
 
     }
 }

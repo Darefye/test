@@ -18,8 +18,8 @@ import java.io.IOException
 const val ONE = "2912"
 const val TWO = "2738"
 
-@AndroidEntryPoint
 class LoadingScreenFragment : Fragment() {
+    private val link = "https://testtasks.nutgeek.fun/a/"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -30,7 +30,7 @@ class LoadingScreenFragment : Fragment() {
 
     private fun getResponse() {
         val client = OkHttpClient()
-        val request = Request.Builder().url("https://testtasks.nutgeek.fun/a/").build()
+        val request = Request.Builder().url(link).build()
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
